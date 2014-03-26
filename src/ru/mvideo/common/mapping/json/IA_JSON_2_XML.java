@@ -8,6 +8,7 @@ import com.sap.aii.mapping.api.TransformationOutput;
 import com.sap.engine.interfaces.messaging.api.MessageDirection;
 import com.sap.engine.interfaces.messaging.api.MessageKey;
 import com.sap.engine.interfaces.messaging.api.auditlog.AuditLogStatus;
+import org.json.JSONObject;
 import org.json.XML;
 
 import java.io.BufferedReader;
@@ -59,8 +60,8 @@ public class IA_JSON_2_XML extends AbstractTransformation {
             //Payload
             InputStream is = transformationInput.getInputPayload().getInputStream();
             String jsonString = readStream(is);
-
-            String xml = XML.toString(jsonString);
+            JSONObject jSONObject = new JSONObject(jsonString);
+            String xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + "<message>" + XML.toString(jSONObject) + "</message>";
             transformationOutput.getOutputPayload().getOutputStream().write(xml.toString().getBytes("UTF-8"));
             if (logLevel)
                 Audit.addAuditLogEntry(msgKey, AuditLogStatus.SUCCESS, "JAVA transformation from JSON to XML has been completed");
