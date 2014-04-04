@@ -8,7 +8,7 @@
 .idea/*
 *.iml
 *.iws
-*.jar
+*.properties
 
 # Mac
 .DS_Store
@@ -16,3 +16,21 @@
 # Maven
 log/
 target/
+
+# NetBeans specific #
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Class Files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.class
